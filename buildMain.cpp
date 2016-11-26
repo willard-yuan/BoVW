@@ -33,7 +33,7 @@ int main(int argc, char** argv){
     kmParas.max_iterations = 5000;
     
     // 单词数目
-    int numWords = 100;
+    int numWords = 500;
     
     std::string vocWeightSaved = "vocWeights.mat";
     std::string histsSaved = "hists.mat";

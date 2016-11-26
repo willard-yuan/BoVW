@@ -61,4 +61,6 @@ template <typename T>
 arma::mat vec2mat(std::vector<std::vector<T>>&vec);*/
 
 
+cv::Mat makeCanvas(std::vector<cv::Mat>& vecMat, int windowHeight, int nRows);
+
 #endif /* utils_h */

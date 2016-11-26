@@ -9,6 +9,7 @@
 #include "vl_kdtree.hpp"
 #include "general.h"
 #include "bow_module.hpp"
+#include "utils.h"
 
 #include <math.h>
 
@@ -20,12 +21,12 @@ int main(int argc, char** argv){
     
     std::string vocWeightSaved = "vocWeights.mat";
     std::string histsSaved = "hists.mat";
-    int showNum = 10;
+    int showNum = 20;
     
 	superluOpts opts; //几何校正参数
     
     //提取所有图像的特征
-    std::string imgsRootPath = "/Users/willard/codes/cpp/openCVison/bow-alpha/bow-alpha/images/";
+    std::string imgsRootPath = "/Users/willard/codes/cpp/openCVison/bow-beta/bow-beta/images/";
     std::vector<std::string> imgsPath = getFilesPath(imgsRootPath);
     int imgsNum = (int)imgsPath.size();
     
@@ -37,7 +38,7 @@ int main(int argc, char** argv){
     
     //测试查询
     // Need to improve: 用矩阵代替for循环
-    int queryID = 2;
+    int queryID = 4;
     arma::mat queryhistogram = histograms.row(queryID); //查询图像
     std::vector<float> scores;
     for(int i = 0; i < imgsNum; i++){
@@ -52,14 +53,23 @@ int main(int argc, char** argv){
     }
     std::cout << "\n" << std::endl;*/
     
+    std::vector<cv::Mat> vecMat;
+    
     //相似度排序
     std::vector<size_t> sortedIdx = sort_indexes(scores);
     for(int i = 0; i < showNum; i++){
     //for (auto idx: sortedIdx) {
-        std::cout << sortedIdx[i] << ": " << scores[sortedIdx[i]] << std::endl;
+        std::cout << imgsPath.at(sortedIdx[i]) << ": " << scores[sortedIdx[i]] << std::endl;
+        cv::Mat tmpImg = cv::imread(imgsRootPath+imgsPath.at(sortedIdx[i]), CV_8UC3);
+        vecMat.push_back(tmpImg);
+        
     }
     
-     std::cout << "\n" << std::endl;
+    std::cout << "\n" << std::endl;
+    
+    cv::Mat combinedImgs =  makeCanvas(vecMat, 800, 5);
+    cv::imshow("query results", combinedImgs);
+    cv::waitKey();
     
     return 0;
 }
