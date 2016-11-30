@@ -36,15 +36,15 @@ int main(int argc, char** argv){
     // Setting word number
     int numWords = 500;
     
-    std::string vocWeightSaved = "vocWeights.mat";
-    std::string histsSaved = "hists.mat";
+    std::string vocWeightSaved = "vocWeights_first1000.mat";
+    std::string histsSaved = "hists_first1000.mat";
     
     // search method option: KD-Tree
     std::string annSearch = "OpenCV_KD";
     
     // Obtain the images file names
-    //std::string imgsRootPath = "/Users/willard/Pictures/ukbench/";
-    std::string imgsRootPath = "/Users/willard/codes/cpp/openCVison/bow-beta/bow-beta/images/";
+    std::string imgsRootPath = "/Users/willard/Pictures/first1000/";
+    //std::string imgsRootPath = "/Users/willard/codes/cpp/openCVison/bow-beta/bow-beta/images/";
     std::vector<std::string> imgsName = getFilesPath(imgsRootPath);
     int numImgs = (int)imgsName.size();
     
