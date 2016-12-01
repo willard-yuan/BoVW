@@ -7,6 +7,7 @@
   5. 写入词频权重
  
  ## To do:
+  1. 特征提取后单独保存
  */
 
 #include <math.h>
@@ -34,10 +35,10 @@ int main(int argc, char** argv){
     kmParas.max_iterations = 5000; // max iterations of kmeans
     
     // Setting word number
-    int numWords = 500;
+    int numWords = 1000;
     
-    std::string vocWeightSaved = "vocWeights_first1000.mat";
-    std::string histsSaved = "hists_first1000.mat";
+    std::string vocWeightSaved = "vocWeights_first1000_1000w.mat";
+    std::string histsSaved = "hists_first1000_1000w.mat";
     
     // search method option: KD-Tree
     std::string annSearch = "OpenCV_KD";

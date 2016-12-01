@@ -19,14 +19,15 @@ extern "C" {
 
 int main(int argc, char** argv){
     
-    std::string vocWeightSaved = "vocWeights.mat";
-    std::string histsSaved = "hists.mat";
-    int showNum = 20;
+    std::string vocWeightSaved = "vocWeights_first1000.mat";
+    std::string histsSaved = "hists_first1000.mat";
+    int showNum = 60;
     
 	superluOpts opts; //几何校正参数
     
     //提取所有图像的特征
-    std::string imgsRootPath = "/Users/willard/codes/cpp/openCVison/bow-beta/bow-beta/images/";
+    std::string imgsRootPath = "/Users/willard/Pictures/first1000/";
+    //std::string imgsRootPath = "/Users/willard/codes/cpp/openCVison/bow-beta/bow-beta/images/";
     std::vector<std::string> imgsPath = getFilesPath(imgsRootPath);
     int imgsNum = (int)imgsPath.size();
     
@@ -38,7 +39,7 @@ int main(int argc, char** argv){
     
     //测试查询
     // Need to improve: 用矩阵代替for循环
-    int queryID = 4;
+    int queryID = 0;
     arma::mat queryhistogram = histograms.row(queryID); //查询图像
     std::vector<float> scores;
     for(int i = 0; i < imgsNum; i++){
@@ -67,7 +68,7 @@ int main(int argc, char** argv){
     
     std::cout << "\n" << std::endl;
     
-    cv::Mat combinedImgs =  makeCanvas(vecMat, 800, 5);
+    cv::Mat combinedImgs =  makeCanvas(vecMat, 900, 8);
     cv::imshow("query results", combinedImgs);
     cv::waitKey();
     

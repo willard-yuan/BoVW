@@ -19,14 +19,14 @@ extern "C" {
 
 int main(int argc, char** argv){
     
-    std::string vocWeightSaved = "vocWeights.mat";
-    std::string histsSaved = "hists.mat";
+    std::string vocWeightSaved = "vocWeights_first1000.mat";
+    std::string histsSaved = "hists_first1000.mat";
     int showNum = 4;
     
 	superluOpts opts; //几何校正参数
     
-    //提取所有图像的特征
-    std::string imgsRootPath = "/Users/willard/Pictures/ukbench/";
+    // 提取所有图像的特征
+    std::string imgsRootPath = "/Users/willard/Pictures/first1000/";
     std::vector<std::string> imgsPath = getFilesPath(imgsRootPath);
     int imgsNum = (int)imgsPath.size();
     
@@ -36,7 +36,7 @@ int main(int argc, char** argv){
     arma::mat histograms;
     histograms.load(histsSaved, arma::raw_ascii);
     
-    //测试查询
+    // 测试查询
     // Need to improve: 用矩阵代替for循环
     clock_t begin = clock();
     float sumScores = 0;
